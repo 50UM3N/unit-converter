@@ -1,7 +1,22 @@
 import React, { useState } from "react";
-import Temp from "./Components/Temp";
+
+import Area from "./Components/Area";
+import DataTransferRate from "./Components/DataTransferRate";
+import DigitalStorage from "./Components/DigitalStorage";
+import Energy from "./Components/Energy";
+import Frequency from "./Components/Frequency";
+import FuelEconomy from "./Components/FuelEconomy";
+import Length from "./Components/Length";
+import Mass from "./Components/Mass";
+import PlaneAngle from "./Components/PlaneAngle";
+import Pressure from "./Components/Pressure";
+import Speed from "./Components/Speed";
+import Temperature from "./Components/Temperature";
+import Time from "./Components/Time";
+import Volume from "./Components/Volume";
+
 export default function App() {
-    const [current, setCurrent] = useState("Volume");
+    const [current, setCurrent] = useState("Time");
     const [options] = useState([
         "Area",
         "Data Transfer Rate",
@@ -18,6 +33,22 @@ export default function App() {
         "Time",
         "Volume",
     ]);
+    const currentRender = {
+        Area: <Area />,
+        "Data Transfer Rate": <DataTransferRate />,
+        "Digital Storage": <DigitalStorage />,
+        Energy: <Energy />,
+        Frequency: <Frequency />,
+        "Fuel Economy": <FuelEconomy />,
+        Length: <Length />,
+        Mass: <Mass />,
+        "Plane Angle": <PlaneAngle />,
+        Pressure: <Pressure />,
+        Speed: <Speed />,
+        Temperature: <Temperature />,
+        Time: <Time />,
+        Volume: <Volume />,
+    };
     const setValue = (e) => {
         setCurrent(e.target.value);
     };
@@ -32,7 +63,7 @@ export default function App() {
                     );
                 })}
             </select>
-            <Temp />
+            {currentRender[current]}
         </>
     );
 }

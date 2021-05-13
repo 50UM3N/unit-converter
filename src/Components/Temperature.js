@@ -46,7 +46,6 @@ export default React.memo(function Temp() {
             unit1 = select[0];
             unit2 = select[1];
         }
-        console.log(unit1, unit2);
         if (unit1 === "Celsius" && unit2 === "Fahrenheit")
             data = (data * 9) / 5 + 32;
         else if (unit1 === "Celsius" && unit2 === "Kelvin") data += 273.15;

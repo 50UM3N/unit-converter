@@ -53,17 +53,23 @@ export default function App() {
         setCurrent(e.target.value);
     };
     return (
-        <>
-            <select value={current} onChange={setValue}>
-                {options.map((option) => {
-                    return (
-                        <option key={option} value={option}>
-                            {option}
-                        </option>
-                    );
-                })}
-            </select>
-            {currentRender[current]}
-        </>
+        <div className="container">
+            <div className="converter-wrapper">
+                <select
+                    className="global-select-control"
+                    value={current}
+                    onChange={setValue}
+                >
+                    {options.map((option) => {
+                        return (
+                            <option key={option} value={option}>
+                                {option}
+                            </option>
+                        );
+                    })}
+                </select>
+                {currentRender[current]}
+            </div>
+        </div>
     );
 }

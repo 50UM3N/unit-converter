@@ -1,13 +1,18 @@
 import React, { memo, useState } from "react";
 import Select from "./InputSelectRow";
-import GenIfElse from "./GenIfElse";
+//import GenIfElse from "./GenIfElse";
 
 export default memo(function Frequency() {
     // this is the list you have to write
-    const [options] = useState([]);
+    const [options] = useState([
+        "Hertz",
+        "Kilohetrz",
+        "Megahertz",
+        "Gigahertz",
+    ]);
 
     // this is the two default unite that shows in google
-    const [select, setSelect] = useState(["", ""]);
+    const [select, setSelect] = useState(["Hertz", "Kilohetrz"]);
     const [isTo, setIsTo] = useState(false);
     const [amount, setAmount] = useState(0);
 
@@ -52,6 +57,24 @@ export default memo(function Frequency() {
             unit2 = select[1];
         }
         // calculation section (pest the copy text)
+        if (unit1 === "Hertz" && unit2 === "Kilohetrz") data = data * 0.001;
+        else if (unit1 === "Hertz" && unit2 === "Megahertz") data = data * 1e-6;
+        else if (unit1 === "Hertz" && unit2 === "Gigahertz") data = data * 1e-9;
+        else if (unit1 === "Kilohetrz" && unit2 === "Hertz") data = data * 1000;
+        else if (unit1 === "Kilohetrz" && unit2 === "Megahertz")
+            data = data * 0.001;
+        else if (unit1 === "Kilohetrz" && unit2 === "Gigahertz")
+            data = data * 1e-6;
+        else if (unit1 === "Megahertz" && unit2 === "Hertz") data = data * 1e6;
+        else if (unit1 === "Megahertz" && unit2 === "Kilohetrz")
+            data = data * 1000;
+        else if (unit1 === "Megahertz" && unit2 === "Gigahertz")
+            data = data * 0.001;
+        else if (unit1 === "Gigahertz" && unit2 === "Hertz") data = data * 1e9;
+        else if (unit1 === "Gigahertz" && unit2 === "Kilohetrz")
+            data = data * 1e6;
+        else if (unit1 === "Gigahertz" && unit2 === "Megahertz")
+            data = data * 1000;
 
         // end calculation section
         if (data > 100000) data = data.toExponential(4);
@@ -105,7 +128,7 @@ export default memo(function Frequency() {
                     multiply the length value by 100
                 </span>
             </p>
-            <GenIfElse options={options} />
+            {/*<GenIfElse options={options} />*/}
         </>
     );
 });

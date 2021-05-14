@@ -67,7 +67,7 @@ select {
     .input-control {
         background-color: #fff;
         border: 1px solid #dadce0;
-        border-radius: 2px 2px 0 0;
+        border-bottom: none;
         border-radius: 2px 2px 0 0;
         color: #000;
         font-size: 180%;
@@ -80,6 +80,7 @@ select {
     .select-control {
         width: unset;
         margin: unset;
+        border-radius: 0 0 2px 2px;
     }
 }
 

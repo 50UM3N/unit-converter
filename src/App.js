@@ -16,7 +16,7 @@ import Time from "./Components/Time";
 import Volume from "./Components/Volume";
 
 export default function App() {
-    const [current, setCurrent] = useState("Time");
+    const [current, setCurrent] = useState("Pressure");
     const [options] = useState([
         "Area",
         "Data Transfer Rate",

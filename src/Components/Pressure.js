@@ -1,13 +1,18 @@
 import React, { memo, useState } from "react";
 import Select from "./InputSelectRow";
-import GenIfElse from "./GenIfElse";
 
 export default memo(function Pressure() {
     // this is the list you have to write
-    const [options] = useState([]);
+    const [options] = useState([
+        "Bar",
+        "Pascal",
+        "Pound per square inch",
+        "Standard atmosphere",
+        "Torr",
+    ]);
 
     // this is the two default unite that shows in google
-    const [select, setSelect] = useState(["", ""]);
+    const [select, setSelect] = useState(["Pascal", "Bar"]);
     const [isTo, setIsTo] = useState(false);
     const [amount, setAmount] = useState(0);
 
@@ -52,6 +57,46 @@ export default memo(function Pressure() {
             unit2 = select[1];
         }
         // calculation section (pest the copy text)
+        if (unit1 === "Bar" && unit2 === "Pascal") data = data * 100000;
+        else if (unit1 === "Bar" && unit2 === "Pound per square inch")
+            data = data * 14.5038;
+        else if (unit1 === "Bar" && unit2 === "Standard atmosphere")
+            data = data * 0.986923;
+        else if (unit1 === "Bar" && unit2 === "Torr") data = data * 750.062;
+        else if (unit1 === "Pascal" && unit2 === "Bar") data = data / 100000;
+        else if (unit1 === "Pascal" && unit2 === "Pound per square inch")
+            data = data / 6894.76;
+        else if (unit1 === "Pascal" && unit2 === "Standard atmosphere")
+            data = data / 101325;
+        else if (unit1 === "Pascal" && unit2 === "Torr") data = data / 133.322;
+        else if (unit1 === "Pound per square inch" && unit2 === "Bar")
+            data = data * 0.0689476;
+        else if (unit1 === "Pound per square inch" && unit2 === "Pascal")
+            data = data * 6894.76;
+        else if (
+            unit1 === "Pound per square inch" &&
+            unit2 === "Standard atmosphere"
+        )
+            data = data / 14.6959;
+        else if (unit1 === "Pound per square inch" && unit2 === "Torr")
+            data = data * 51.7149;
+        else if (unit1 === "Standard atmosphere" && unit2 === "Bar")
+            data = data * 1.01325;
+        else if (unit1 === "Standard atmosphere" && unit2 === "Pascal")
+            data = data * 101325;
+        else if (
+            unit1 === "Standard atmosphere" &&
+            unit2 === "Pound per square inch"
+        )
+            data = data * 14.6959;
+        else if (unit1 === "Standard atmosphere" && unit2 === "Torr")
+            data = data * 760;
+        else if (unit1 === "Torr" && unit2 === "Bar") data = data / 750.062;
+        else if (unit1 === "Torr" && unit2 === "Pascal") data = data * 133.322;
+        else if (unit1 === "Torr" && unit2 === "Pound per square inch")
+            data = data / 51.7149;
+        else if (unit1 === "Torr" && unit2 === "Standard atmosphere")
+            data = data / 760;
 
         // end calculation section
         if (data > 100000) data = data.toExponential(4);
@@ -77,7 +122,6 @@ export default memo(function Pressure() {
 
     return (
         <>
-            <p>Pressure</p>
             <div className="converter-control">
                 <div className="input-select-row">
                     <Select
@@ -105,7 +149,6 @@ export default memo(function Pressure() {
                     multiply the length value by 100
                 </span>
             </p>
-            <GenIfElse options={options} />
         </>
     );
 });

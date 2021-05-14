@@ -4,10 +4,18 @@ import GenIfElse from "./GenIfElse";
 
 export default memo(function FuelEconomy() {
     // this is the list you have to write
-    const [options] = useState([]);
+    const [options] = useState([
+        "Miles per gallon",
+        "Miles per gallon (Imperial)",
+        "Kilometer per liter",
+        "Liter per 100 kilometers",
+    ]);
 
     // this is the two default unite that shows in google
-    const [select, setSelect] = useState(["", ""]);
+    const [select, setSelect] = useState([
+        "Kilometer per liter",
+        "Miles per gallon",
+    ]);
     const [isTo, setIsTo] = useState(false);
     const [amount, setAmount] = useState(0);
 
@@ -52,7 +60,67 @@ export default memo(function FuelEconomy() {
             unit2 = select[1];
         }
         // calculation section (pest the copy text)
-
+        if (
+            unit1 === "Miles per gallon" &&
+            unit2 === "Miles per gallon (Imperial)"
+        )
+            data = data * 1.20095;
+        else if (
+            unit1 === "Miles per gallon" &&
+            unit2 === "Kilometer per liter"
+        )
+            data = data / 2.35215;
+        else if (
+            unit1 === "Miles per gallon" &&
+            unit2 === "Liter per 100 kilometers"
+        )
+            data = 235.215 / data;
+        else if (
+            unit1 === "Miles per gallon (Imperial)" &&
+            unit2 === "Miles per gallon"
+        )
+            data = data / 1.20095;
+        else if (
+            unit1 === "Miles per gallon (Imperial)" &&
+            unit2 === "Kilometer per liter"
+        )
+            data = data / 2.82481;
+        else if (
+            unit1 === "Miles per gallon (Imperial)" &&
+            unit2 === "Liter per 100 kilometers"
+        )
+            data = 282.481 / data;
+        else if (
+            unit1 === "Kilometer per liter" &&
+            unit2 === "Miles per gallon"
+        )
+            data = data * 2.35215;
+        else if (
+            unit1 === "Kilometer per liter" &&
+            unit2 === "Miles per gallon (Imperial)"
+        )
+            data = data * 2.82481;
+        else if (
+            unit1 === "Kilometer per liter" &&
+            unit2 === "Liter per 100 kilometers"
+        )
+            data = 100 / data;
+        else if (
+            unit1 === "Liter per 100 kilometers" &&
+            unit2 === "Miles per gallon"
+        )
+            data = 235.215 / data;
+        else if (
+            unit1 === "Liter per 100 kilometers" &&
+            unit2 === "Miles per gallon (Imperial)"
+        )
+            data = 282.481 / data;
+        else if (
+            unit1 === "Liter per 100 kilometers" &&
+            unit2 === "Kilometer per liter"
+        )
+            data = 100 / data;
+        if (data == Infinity) return "";
         // end calculation section
         if (data > 100000) data = data.toExponential(4);
         else if (data < 99999 && data > 0.000001)

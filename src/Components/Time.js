@@ -262,31 +262,36 @@ export default memo(function Time() {
       toAmount = amount;
       fromAmount = convert(amount);
     }
-  } else {
-    toAmount = amount;
-    fromAmount = amount;
-  }
-  return (
-    <>
-      <div>
-        <Select
-          amount={toAmount}
-          handleInput={handleInputFrom}
-          handleSelect={handleSelectFrom}
-          options={options}
-          selectedValue={select[0]}
-        />
-      </div>
-      <div>
-        <Select
-          amount={fromAmount}
-          handleInput={handleInputTo}
-          handleSelect={handleSelectTo}
-          options={options}
-          selectedValue={select[1]}
-        />
-      </div>
-      <GenIfElse options={options} />
-    </>
-  );
+    return (
+        <>
+            <div className="converter-control">
+                <div className="input-select-row">
+                    <Select
+                        amount={toAmount}
+                        handleInput={handleInputFrom}
+                        handleSelect={handleSelectFrom}
+                        options={options}
+                        selectedValue={select[0]}
+                    />
+                </div>
+                <div className="equal">=</div>
+                <div className="input-select-row">
+                    <Select
+                        amount={fromAmount}
+                        handleInput={handleInputTo}
+                        handleSelect={handleSelectTo}
+                        options={options}
+                        selectedValue={select[1]}
+                    />
+                </div>
+            </div>
+            <p className="formula-wrapper">
+                <span className="formula-logo">Formula</span>{" "}
+                <span className="formula">
+                    multiply the length value by 100
+                </span>
+            </p>
+            {/* <GenIfElse options={options} /> */}
+        </>
+    );
 });

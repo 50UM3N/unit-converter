@@ -9,8 +9,19 @@ export default React.memo(function Select({
 }) {
     return (
         <>
-            <input value={amount} onChange={handleInput} />
-            <select value={selectedValue} onChange={handleSelect}>
+            <input
+                className="input-control"
+                value={amount}
+                onClick={(e) => {
+                    e.target.select();
+                }}
+                onChange={handleInput}
+            />
+            <select
+                className="global-select-control select-control"
+                value={selectedValue}
+                onChange={handleSelect}
+            >
                 {options.map((option) => {
                     return (
                         <option key={option} value={option}>

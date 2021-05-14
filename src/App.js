@@ -16,54 +16,60 @@ import Time from "./Components/Time";
 import Volume from "./Components/Volume";
 
 export default function App() {
-  const [current, setCurrent] = useState("Time");
-  const [options] = useState([
-    "Area",
-    "Data Transfer Rate",
-    "Digital Storage",
-    "Energy",
-    "Frequency",
-    "Fuel Economy",
-    "Length",
-    "Mass",
-    "Plane Angle",
-    "Pressure",
-    "Speed",
-    "Temperature",
-    "Time",
-    "Volume",
-  ]);
-  const currentRender = {
-    Area: <Area />,
-    "Data Transfer Rate": <DataTransferRate />,
-    "Digital Storage": <DigitalStorage />,
-    Energy: <Energy />,
-    Frequency: <Frequency />,
-    "Fuel Economy": <FuelEconomy />,
-    Length: <Length />,
-    Mass: <Mass />,
-    "Plane Angle": <PlaneAngle />,
-    Pressure: <Pressure />,
-    Speed: <Speed />,
-    Temperature: <Temperature />,
-    Time: <Time />,
-    Volume: <Volume />,
-  };
-  const setValue = (e) => {
-    setCurrent(e.target.value);
-  };
-  return (
-    <>
-      <select value={current} onChange={setValue}>
-        {options.map((option) => {
-          return (
-            <option key={option} value={option}>
-              {option}
-            </option>
-          );
-        })}
-      </select>
-      {currentRender[current]}
-    </>
-  );
+    const [current, setCurrent] = useState("Time");
+    const [options] = useState([
+        "Area",
+        "Data Transfer Rate",
+        "Digital Storage",
+        "Energy",
+        "Frequency",
+        "Fuel Economy",
+        "Length",
+        "Mass",
+        "Plane Angle",
+        "Pressure",
+        "Speed",
+        "Temperature",
+        "Time",
+        "Volume",
+    ]);
+    const currentRender = {
+        Area: <Area />,
+        "Data Transfer Rate": <DataTransferRate />,
+        "Digital Storage": <DigitalStorage />,
+        Energy: <Energy />,
+        Frequency: <Frequency />,
+        "Fuel Economy": <FuelEconomy />,
+        Length: <Length />,
+        Mass: <Mass />,
+        "Plane Angle": <PlaneAngle />,
+        Pressure: <Pressure />,
+        Speed: <Speed />,
+        Temperature: <Temperature />,
+        Time: <Time />,
+        Volume: <Volume />,
+    };
+    const setValue = (e) => {
+        setCurrent(e.target.value);
+    };
+    return (
+        <div className="container">
+            <div className="converter-wrapper">
+                <select
+                    className="global-select-control"
+                    value={current}
+                    onChange={setValue}
+                >
+                    {options.map((option) => {
+                        return (
+                            <option key={option} value={option}>
+                                {option}
+                            </option>
+                        );
+                    })}
+                </select>
+                {currentRender[current]}
+            </div>
+        </div>
+    );
 }
